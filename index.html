@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+	<script src="http://localhost:8000/toronto_geo.json"></script>
+	<script src="http://localhost:8000/2018_potholes.json"></script>
+
+	<style> 
+	body {
+	   position: absolute;
+	    /*font-family: "Proxima Nova", "Montserrat", sans-serif;*/
+		}
+	
+	h1, h2 {
+	    position: absolute;
+	    left: 300px;
+	    font-size: 1.3em;
+	    font-weight: 100;
+		}
+	
+	h1{
+		top:420px;
+	}
+	h2 {
+	    top: 440px;
+	    font-size: 1em;
+		}
+	
+	.hover {
+    	fill: yellow;   
+		}
+	
+	#sliderContainer{
+    text-align: center;
+    position: absolute;
+    top: 320px;
+    left: 720px;
+	}
+	
+	/*.incident {
+        fill: steelblue;
+    }*/
+	</style>
+</head>
+
+
+<body>
+	<h1> TORONTO POT HOLE LOCATIONS</h1>
+	
+	<!-- h2 is the place holder header for the address of each pothole location-->
+	<h2></h2>
+
+	<div id="sliderContainer">
+    	<input id="timeslide" type="range" min="0" max="11" value="0" step="1"/><br>
+    	<span id="range">January</span>
+	</div>
+	
+	<script> 
+		
+		var inputValue = null;
+		var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+
+		var width = 700;
+		var height = 580;
+
+		var svg = d3.selectAll("body")
+		.append("svg")
+		.attr("width", width)
+		.attr("height", height);
+
+		var g = svg.append("g");
+
+
+		var albersProjection = d3.geoAlbers()
+		.scale(190000)
+		.rotate([79.3832,0])
+		.center([0,43.6532])
+		.translate([width/2, height/2]);
+
+		//uses d3 to turn lat/lon coordinates into screen coordinates
+		var geoPath = d3.geoPath()
+		.projection(albersProjection);
+
+		//path is capable of drawing shapes
+		//d attr is sequential instructions in svg for drawing 
+		g.selectAll("path")
+		.data(neighborhoods_json.features)
+		.enter()
+		.append("path")
+		.attr("fill","#ccc")
+		.attr("stroke","#333")
+		.attr("d", geoPath)
+
+		
+		var potholes = svg.append("g");
+		potholes.selectAll("path")
+		.data(potholes_json.features)
+		.enter()
+		.append("path")
+		.attr("fill",initialDate)
+		.attr("stroke","#999")
+		.attr("d", geoPath)
+		.attr( "class", "incident")
+		.on("mouseover", function(d){
+		d3.select("h2").text(d.properties.address);
+		d3.select(this).attr("class","hover");
+		})
+		.on("mouseout", function(d){
+		d3.select("h2").text("");
+		d3.select(this).attr("class","incident");
+		});
+		
+	
+		d3.select("#timeslide").on("input", function() {
+		    update(+this.value);
+		});
+
+		// update the fill of each SVG of class "incident" with value
+		function update(value) {
+		    document.getElementById("range").innerHTML=month[value];
+		    inputValue = month[value];
+		    d3.selectAll(".incident")
+		        .attr("fill", dateMatch);
+		}
+
+		function dateMatch(data, value) {
+   		var d = new Date(data.properties.requested_datetime);
+    	var m = month[d.getMonth()];
+    	if (inputValue == m) {
+        	this.parentElement.appendChild(this);
+        	return "red";} 
+        else {
+        	return "#ccc";};
+		}
+
+		function initialDate(d,i){
+    	var d = new Date(d.properties.requested_datetime);
+    	var m = month[d.getMonth()];
+    	if (m == "January") {
+        	this.parentElement.appendChild(this);
+        	return "red";} 
+        else {
+        	return "#ccc";};
+		}
+
+	</script>
+
+
+</body>
+</html>
