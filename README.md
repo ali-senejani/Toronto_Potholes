@@ -4,9 +4,8 @@ This is a combination of data mining and data visualization effort with the aim 
 The data was gathered from [Toronto Open Data](https://open.toronto.ca/) in JSON format. The city of Toronto collects information about potholes through service requests and documents pertinent information about each, including the service request code, status, address, longitude, and latitudes of the location requiring service. Each request is uniquely identifiable through its *“service request id”*. 
 
 Querying information about potholes involved making requests by entering parameters such as desired time interval (*start_date*, *end_date*) and the *service request code*. At the time of gathering this information, query sizes were limited to 1,000 records per request. To remain within the query limit, the start and end date parameters had to remain a few days apart. The JSON output of each request was concatenated to form the data representing months, and eventually the entire 2018 year. This data is stored in the JSON directory of this repository. 
-![alt text] (“https://github.com/ali-senejani/Toronto_Potholes/blob/main/images/query.png”)
-![alt text]
-(“images/record.png”)
+![alt text](“https://github.com/ali-senejani/Toronto_Potholes/blob/main/images/query.png”)
+![alt text](“images/record.png”)
 
 
 To project the gathered data onto a map, the JSON files were converted to GeoJSON. GeoJSON data is stored in the GeoJSON directory of this repository. 
@@ -21,5 +20,6 @@ Below, I’ve plotted the distribution of pothole data for the 2018 year using t
 
 ![image](“images/months.png”)
 ![image](“images/areas.png”)
+
 
 
