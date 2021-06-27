@@ -1,5 +1,8 @@
 
 # Toronto_Potholes
+**To access the rendered version of the html file containing an interactive map click [here](https://ali-senejani.github.io/Toronto_Potholes/).**
+
+
 This is a combination of data mining and data visualization effort with the aim of identifying spatial and temporal information about potholes within the city of Toronto. Although the data is comparative of months within 2018, in the future I hope to conduct analysis spanning multiple years. 
 
 The data was gathered from [Toronto Open Data](https://open.toronto.ca/) in JSON format. The city of Toronto collects information about potholes through service requests and documents pertinent information about each, including the service request code, status, address, longitude, and latitudes of the location requiring service. Each request is uniquely identifiable through its *“service request id”*. 
@@ -15,7 +18,6 @@ The GeoJSON coordinates for plotting the map of Toronto and its neighborhoods wa
 
 D3 visualization of potholes and projection onto the map was done using a tutorial from [DUSPviz](http://duspviz.mit.edu/d3-workshop/mapping-data-with-d3/). 
 
-**To access the rendered version of the html file containing an interactive map click here().**
 
 Below, I’ve plotted the distribution of pothole data for the 2018 year using the mined JSON data, which distinguishes pothole information based on the time of the year and neighborhoods in the city of Toronto. 
 
