@@ -9,7 +9,6 @@ The data was gathered from [Toronto Open Data](https://open.toronto.ca/) in JSON
 
 Querying information about potholes involved making requests by entering parameters such as desired time interval (*start_date*, *end_date*) and the *service request code*. At the time of gathering this information, query sizes were limited to 1,000 records per request. To remain within the query limit, the start and end date parameters had to remain a few days apart. The JSON output of each request was concatenated to form the data representing months, and eventually the entire 2018 year. This data is stored in the JSON directory of this repository. 
 
-![query](https://user-images.githubusercontent.com/61554673/123553939-cacec680-d74b-11eb-8a06-0ebb9c0b8bca.png)
 ![record](https://user-images.githubusercontent.com/61554673/123553950-d6ba8880-d74b-11eb-97d0-69ef8c3b440c.png)
 
 To project the gathered data onto a map, the JSON files were converted to GeoJSON. GeoJSON data is stored in the GeoJSON directory of this repository. 
