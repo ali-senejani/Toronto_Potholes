@@ -1,6 +1,6 @@
 
 # Toronto_Potholes
-**To access the rendered version of the html file containing an interactive map click [here](https://ali-senejani.github.io/Toronto_Potholes/).**
+**To access the rendered version of the html file containing an interactive map click [here](https://alsds.github.io/Toronto_Potholes/).**
 
 
 This is a combination of data mining and data visualization effort with the aim of identifying spatial and temporal information about potholes within the city of Toronto. Although the data is comparative of months within 2018, in the future I hope to conduct analysis spanning multiple years. 
